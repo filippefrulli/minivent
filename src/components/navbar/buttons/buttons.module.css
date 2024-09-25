@@ -1,0 +1,34 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.createEventButton {
+  background-color: blue;
+  color: white;
+  height: 40px;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  margin-right: 32px;
+  cursor: pointer;
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.profileButton {
+  width: 40px;
+  height: 40px;
+  background-color: black;
+  color: white;
+  padding: 8;
+  margin-top: 12px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.plusIcon {
+  margin-right: 12px;
+}
