@@ -1,16 +1,38 @@
 .container {
-    margin-top: 32px;
+  margin-top: 32px;
 }
 
-.normalText{
-    font-size: 30px;
-    font-weight: 200;
+.normalText {
+  font-size: 26px;
+  font-weight: 200;
 }
+
+.largeText {
+  font-size: 32px;
+  font-weight: 800;
+  margin-left: 12px;
+  color: blue;
+  text-decoration: underline;
+  cursor: text;
+}
+
+.largeTextInput {
+  font-size: 32px;
+  font-weight: 800;
+  margin-left: 12px;
+  cursor: text;
+  background-color: transparent;
+  color: blue;
+  border: none;
+  outline: none;
+}
+
+.largeTextInput::placeholder {
+    color: lightgrey;
+  }
 
 .eventList {
-
 }
 
 .mapContainer {
-
 }
