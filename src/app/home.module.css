@@ -28,8 +28,25 @@
 }
 
 .largeTextInput::placeholder {
-    color: lightgrey;
-  }
+  color: lightgrey;
+}
+
+.dropdown {
+  margin-left: 250px;
+  max-width: 250px;
+  max-height: 200px; /* Optional: limit the height of the dropdown */
+  overflow-y: auto; /* Optional: add scroll if the content exceeds max-height */
+  z-index: 1000; /* Ensure the dropdown is above other elements */
+}
+
+.dropdownItem {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background-color: #f0f0f0; /* Highlight the item on hover */
+}
 
 .eventList {
 }
