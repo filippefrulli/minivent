@@ -2,8 +2,13 @@
   margin-top: 32px;
 }
 
+.searchContainer {
+  position: relative; /* Ensure the dropdown is positioned relative to this container */
+}
+
 .normalText {
   font-size: 26px;
+  font-weight: lighter;
   font-weight: 200;
 }
 
@@ -12,7 +17,6 @@
   font-weight: 800;
   margin-left: 12px;
   color: blue;
-  text-decoration: underline;
   cursor: text;
 }
 
@@ -32,9 +36,12 @@
 }
 
 .dropdown {
+  position: absolute;
+  background-color: var(--bg);
+  border: 1px solid #e0e0e0;
   margin-left: 250px;
-  max-width: 250px;
-  max-height: 200px; /* Optional: limit the height of the dropdown */
+  width: 250px;
+  max-height: 215px; /* Optional: limit the height of the dropdown */
   overflow-y: auto; /* Optional: add scroll if the content exceeds max-height */
   z-index: 1000; /* Ensure the dropdown is above other elements */
 }
@@ -45,11 +52,9 @@
 }
 
 .dropdownItem:hover {
-  background-color: #f0f0f0; /* Highlight the item on hover */
+  background-color: #f0f0f0;
 }
 
-.eventList {
-}
-
-.mapContainer {
+.eventListContainer {
+  margin-top: 40px;
 }

@@ -2,18 +2,30 @@
 
 import React, { useEffect, useState } from "react";
 import styles from "./home.module.css";
+import EventListItem from "../components/event-list-item/EventListItem";
+import testEvents from "../lib/testevents";
+import testCities from "../lib/testcities";
 
 const Home = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [text, setText] = useState("Chiavari");
+  const [oldText, setOldText] = useState("Chiavari");
   const [cities, setCities] = useState([]);
+  const [filteredCities, setFilteredCities] = useState([]);
 
   const handleTextClick = () => {
+    setOldText(text);
     setIsEditing(true);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
+    const inputText = e.target.value;
+    setText(inputText);
+    setFilteredCities(
+      cities.filter((city) =>
+        city.name.toLowerCase().includes(inputText.toLowerCase())
+      )
+    );
   };
 
   const handleDropdownItemClick = (name: string) => {
@@ -22,31 +34,37 @@ const Home = () => {
   };
 
   const handleBlur = () => {
+    if (!filteredCities.some((city) => city.name === text)) {
+      setText(oldText);
+    }
     setIsEditing(false);
   };
 
   const fetchCities = async () => {
-    const url =
-      "https://wft-geo-db.p.rapidapi.com/v1/geo/locations/44.319494+9.424215/nearbyCities?types=CITY&radius=50&distanceUnit=KM&minPopulation=5000&limit=10";
-    const options = {
-      method: "GET",
-      headers: {
-        "X-Rapidapi-Key": "5ded3d8ab8mshf66f5f42585dbbdp1753a6jsnbf23818cfdd9",
-        "X-Rapidapi-Host": "wft-geo-db.p.rapidapi.com",
-      },
-    };
+    setCities(testCities);
+    setFilteredCities(testCities);
+    // const url =
+    //   "https://wft-geo-db.p.rapidapi.com/v1/geo/locations/44.319494+9.424215/nearbyCities?types=CITY&radius=50&distanceUnit=KM&minPopulation=5000&limit=10";
+    // const options = {
+    //   method: "GET",
+    //   headers: {
+    //     "X-Rapidapi-Key": "5ded3d8ab8mshf66f5f42585dbbdp1753a6jsnbf23818cfdd9",
+    //     "X-Rapidapi-Host": "wft-geo-db.p.rapidapi.com",
+    //   },
+    // };
 
-    try {
-      const response = await fetch(url, options);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
-      setCities(data.data);
-      console.log("Cities:", data.data);
-    } catch (error) {
-      console.error("Error fetching cities:", error);
-    }
+    // try {
+    //   const response = await fetch(url, options);
+    //   if (!response.ok) {
+    //     throw new Error(`HTTP error! status: ${response.status}`);
+    //   }
+    //   const data = await response.json();
+    //   setCities(data.data);
+    //   setFilteredCities(data.data); // Initialize filteredCities with all cities
+    //   console.log("Cities:", data.data);
+    // } catch (error) {
+    //   console.error("Error fetching cities:", error);
+    // }
   };
 
   useEffect(() => {
@@ -74,10 +92,11 @@ const Home = () => {
           )}
           {isEditing ? (
             <div className={styles.dropdown}>
-              {cities.map((item) => (
-                <div key={item.id} className={styles.dropdownItem}
-                onMouseDown={() => handleDropdownItemClick(item.name)}
->
+              {filteredCities.map((item) => (
+                <div
+                  key={item.id}
+                  className={styles.dropdownItem}
+                  onMouseDown={() => handleDropdownItemClick(item.name)}>
                   {item.name}
                 </div>
               ))}
@@ -85,8 +104,17 @@ const Home = () => {
           ) : null}
         </div>
       </div>
-      <div className={styles.eventList}></div>
-      <div className={styles.mapContainer}></div>
+      <div className={styles.eventListContainer}>
+        {testEvents.map((event, index) => (
+          <EventListItem
+            key={index}
+            imageSrc={event.imageSrc}
+            title={event.title}
+            location={event.location}
+            price={event.price}
+          />
+        ))}
+      </div>
     </div>
   );
 };
