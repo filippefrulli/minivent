@@ -56,5 +56,17 @@
 }
 
 .eventListContainer {
+  width: 45%;
   margin-top: 40px;
+}
+
+.mapContainer {
+  width: 45%;
+  margin-top: 40px;
+  height: 500px;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: row;
 }

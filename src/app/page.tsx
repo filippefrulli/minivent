@@ -5,6 +5,7 @@ import styles from "./home.module.css";
 import EventListItem from "../components/event-list-item/EventListItem";
 import testEvents from "../lib/testevents";
 import testCities from "../lib/testcities";
+import MapComponent from "../components/map/Map";
 
 const Home = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -12,6 +13,7 @@ const Home = () => {
   const [oldText, setOldText] = useState("Chiavari");
   const [cities, setCities] = useState([]);
   const [filteredCities, setFilteredCities] = useState([]);
+  const [hoveredEvent, setHoveredEvent] = useState(null);
 
   const handleTextClick = () => {
     setOldText(text);
@@ -104,16 +106,32 @@ const Home = () => {
           ) : null}
         </div>
       </div>
-      <div className={styles.eventListContainer}>
-        {testEvents.map((event, index) => (
-          <EventListItem
-            key={index}
-            imageSrc={event.imageSrc}
-            title={event.title}
-            location={event.location}
-            price={event.price}
+      <div className={styles.contentContainer}>
+        <div className={styles.eventListContainer}>
+          {testEvents.map((event, index) => (
+            <div
+              onMouseEnter={() => setHoveredEvent(event)}
+              onMouseLeave={() => setHoveredEvent(null)}>
+              <EventListItem
+                key={index}
+                imageSrc={event.imageSrc}
+                title={event.title}
+                location={event.location}
+                price={event.price}
+              />
+            </div>
+          ))}
+        </div>
+        <div className={styles.mapContainer}>
+          <MapComponent
+            markerLocations={testEvents.map((event) => ({
+              lat: event.lat,
+              long: event.long,
+              popupText: event.title,
+            }))}
+            hoveredEvent={hoveredEvent}
           />
-        ))}
+        </div>
       </div>
     </div>
   );
