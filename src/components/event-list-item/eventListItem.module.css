@@ -8,8 +8,7 @@
 }
 
 .eventListItem:hover {
-  background-color: #f9f9f9;
-  border: 1px solid blue;
+  background-color: rgb(240, 239, 239);
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow on hover */
 }
@@ -34,7 +33,7 @@
 }
 
 .eventLocation,
-.eventPrice {
+.eventDate {
   font-size: 14px;
   margin: 5px 0;
 }

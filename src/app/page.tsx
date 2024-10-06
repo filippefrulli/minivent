@@ -6,6 +6,7 @@ import EventListItem from "../components/event-list-item/EventListItem";
 import testEvents from "../lib/testevents";
 import testCities from "../lib/testcities";
 import MapComponent from "../components/map/Map";
+import { useRouter } from "next/navigation";
 
 const Home = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -14,6 +15,7 @@ const Home = () => {
   const [cities, setCities] = useState([]);
   const [filteredCities, setFilteredCities] = useState([]);
   const [hoveredEvent, setHoveredEvent] = useState(null);
+  const router = useRouter()
 
   const handleTextClick = () => {
     setOldText(text);
@@ -40,6 +42,18 @@ const Home = () => {
       setText(oldText);
     }
     setIsEditing(false);
+  };
+
+  const createQueryString = (name, value) => {
+    const params = new URLSearchParams();
+    params.set(name, JSON.stringify(value))
+
+    return params.toString();
+  };
+
+  const handleEventClick = (event) => {
+
+    router.push(`/event/${event.id}`);
   };
 
   const fetchCities = async () => {
@@ -111,12 +125,14 @@ const Home = () => {
           {testEvents.map((event, index) => (
             <div
               onMouseEnter={() => setHoveredEvent(event)}
-              onMouseLeave={() => setHoveredEvent(null)}>
+              onMouseLeave={() => setHoveredEvent(null)}
+              onClick={() => handleEventClick(event)}>
               <EventListItem
                 key={index}
-                imageSrc={event.imageSrc}
+                imageSrc={event.banner}
                 title={event.title}
                 location={event.location}
+                date={event.date}
                 price={event.price}
               />
             </div>

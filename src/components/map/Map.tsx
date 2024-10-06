@@ -6,16 +6,16 @@ import L from "leaflet";
 
 const customIcon = L.icon({
   iconUrl: "/assets/icons/marker.png",
-  iconSize: [32, 32],
-  iconAnchor: [16, 32],
-  popupAnchor: [0, -32],
+  iconSize: [36, 36],
+  iconAnchor: [20, 36],
+  popupAnchor: [0, -36],
 });
 
 const activeMarker = L.icon({
     iconUrl: "/assets/icons/marker-active.png",
     iconSize: [52, 52],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -32],
+    iconAnchor: [27, 48],
+    popupAnchor: [0, -52],
   });
 
 interface MarkerLocation {

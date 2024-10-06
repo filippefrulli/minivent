@@ -1,5 +1,4 @@
 import Buttons from "./buttons/Buttons";
-import Links from "./buttons/Buttons";
 import styles from "./navbar.module.css";
 
 const Navbar = () => {
