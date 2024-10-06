@@ -123,7 +123,7 @@ const Home = () => {
       <div className={styles.contentContainer}>
         <div className={styles.eventListContainer}>
           {testEvents.map((event, index) => (
-            <div
+            <a
               onMouseEnter={() => setHoveredEvent(event)}
               onMouseLeave={() => setHoveredEvent(null)}
               onClick={() => handleEventClick(event)}>
@@ -135,7 +135,7 @@ const Home = () => {
                 date={event.date}
                 price={event.price}
               />
-            </div>
+            </a>
           ))}
         </div>
         <div className={styles.mapContainer}>

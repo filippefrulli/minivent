@@ -17,17 +17,15 @@ const EventDetailsPage = ({ params }: { params: { id: string } }) => {
         <h1 className={styles.title}>{event.title}</h1>
       </div>
       <div className={styles.subtitle}>
-          <p>{event.date}</p>
-        </div>
+        <p>{event.date}</p>
+      </div>
       <div className={styles.detailsContainer}>
-        <div className={styles.detailsImage}>
-          <ImageSlider event={event} />
-        </div>
-        <div className={styles.tuple}>
+        <div className={styles.textDetails}>
+          <div className={styles.tuple}>
             <strong>Description</strong>
             <p>{event.description}</p>
           </div>
-        <div className={styles.tuple}>
+          <div className={styles.tuple}>
             <strong>Tickets</strong>
             <p>{event.price != 0 ? event.price + "€" : "Free entry"}</p>
           </div>
@@ -35,6 +33,10 @@ const EventDetailsPage = ({ params }: { params: { id: string } }) => {
             <strong>Address</strong>
             <p>{event.address}</p>
           </div>
+        </div>
+        <div className={styles.detailsImage}>
+          <ImageSlider event={event} />
+        </div>
       </div>
     </div>
   );

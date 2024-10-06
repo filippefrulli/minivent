@@ -14,7 +14,7 @@ const customIcon = L.icon({
 const activeMarker = L.icon({
     iconUrl: "/assets/icons/marker-active.png",
     iconSize: [52, 52],
-    iconAnchor: [27, 48],
+    iconAnchor: [27, 51],
     popupAnchor: [0, -52],
   });
 

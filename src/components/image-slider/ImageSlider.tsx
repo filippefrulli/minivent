@@ -37,8 +37,8 @@ export default function ImageSlider({ event }: ImageSliderProps): JSX.Element {
         <Image
           src={event.images[currentIndex]}
           alt={`Slider Image ${currentIndex + 1}`}
-          width={550}
-          height={300}
+          width={500}
+          height={100}
           className={styles.image}
         />
       </div>
