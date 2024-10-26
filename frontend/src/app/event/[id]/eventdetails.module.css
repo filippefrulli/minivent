@@ -1,0 +1,63 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 20px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.backIcon {
+  font-size: 32px;
+  width: 32px;
+  color: blue;
+  text-decoration: none;
+}
+
+.title {
+  font-size: 3em;
+  margin-left: 32px;
+  text-align: left;
+}
+
+.subtitle {
+  font-size: 1.2em;
+  font-weight: 200;
+  margin-top: 4px;
+  text-align: left;
+}
+
+.tuple {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  text-align: justify;
+}
+
+.subtitle {
+  margin-left: 66px;
+  margin-top: 16px;
+  align-content: start;
+}
+
+.detailsContainer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 32px;
+  width: 100%;
+}
+
+.textDetails {
+  flex: 1;
+  flex-direction: column;
+  align-items: start;
+}
+
+.detailsImage {
+  align-self: right;
+  margin-left: 32px;
+  flex: 1;
+}

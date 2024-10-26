@@ -1,0 +1,78 @@
+.container {
+  margin-top: 32px;
+}
+
+.searchContainer {
+  position: relative;
+}
+
+.normalText {
+  font-size: 30px;
+  font-weight: lighter;
+  font-weight: 200;
+}
+
+.largeText {
+  font-size: 36px;
+  font-weight: 800;
+  margin-left: 12px;
+  color: blue;
+  cursor: text;
+}
+
+.largeTextInput {
+  font-size: 32px;
+  font-weight: 800;
+  margin-left: 12px;
+  cursor: text;
+  background-color: transparent;
+  color: blue;
+  border: none;
+  outline: none;
+}
+
+.largeTextInput::placeholder {
+  color: lightgrey;
+}
+
+.dropdown {
+  position: absolute;
+  background-color: var(--bg);
+  border: 1px solid #e0e0e0;
+  margin-left: 250px;
+  width: 250px;
+  max-height: 215px; /* Optional: limit the height of the dropdown */
+  overflow-y: auto; /* Optional: add scroll if the content exceeds max-height */
+  z-index: 1000; /* Ensure the dropdown is above other elements */
+}
+
+.dropdownItem {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background-color: #f0f0f0;
+}
+
+.eventListContainer {
+  width: 50%;
+  margin-top: 40px;
+  flex: 1;
+  max-height: 560px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.mapContainer {
+  margin-left: 60px;
+  width: 45%;
+  margin-top: 60px;
+  height: 500px;
+  border: black 2px solid;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: row;
+}
