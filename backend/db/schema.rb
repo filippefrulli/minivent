@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_25_224757) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_26_154639) do
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -19,5 +19,21 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_25_224757) do
     t.string "address"
     t.decimal "latitude", precision: 10, scale: 6
     t.decimal "longitude", precision: 10, scale: 6
+    t.string "banner"
+    t.string "location"
+    t.string "date"
+    t.string "ticket_type"
+    t.integer "price"
   end
+
+  create_table "images", force: :cascade do |t|
+    t.integer "event_id", null: false
+    t.string "url"
+    t.string "alt_text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_images_on_event_id"
+  end
+
+  add_foreign_key "images", "events"
 end

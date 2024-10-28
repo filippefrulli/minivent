@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import styles from "./map.module.css";
 import L from "leaflet";
+import { Event } from "../../lib/event";
 
 const customIcon = L.icon({
   iconUrl: "/assets/icons/marker.png",
@@ -26,7 +27,7 @@ interface MarkerLocation {
 
 interface MapComponentProps {
   markerLocations: MarkerLocation[];
-  hoveredEvent: MarkerLocation | null;
+  hoveredEvent: Event | null;
 }
 
 const MapComponent: React.FC<MapComponentProps> = ({ markerLocations, hoveredEvent }) => {
@@ -42,7 +43,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ markerLocations, hoveredEve
         <Marker
           key={index}
           position={[location.lat, location.long]}
-          icon={hoveredEvent && hoveredEvent.lat === location.lat && hoveredEvent.long === location.long ? activeMarker : customIcon}>
+          icon={hoveredEvent && hoveredEvent.latitude === location.lat && hoveredEvent.longitude === location.long ? activeMarker : customIcon}>
           <Popup>{location.popupText}</Popup>
         </Marker>
       ))}

@@ -3,39 +3,30 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import styles from "./ImageSlider.module.css";
-
-interface Event {
-  id: number;
-  title: string;
-  date: string;
-  address: string;
-  description: string;
-  price: number;
-  images: string[];
-}
+import { EventImage } from "../../lib/eventImage";
 
 interface ImageSliderProps {
-  event: Event;
+  images: EventImage[];
 }
 
-export default function ImageSlider({ event }: ImageSliderProps): JSX.Element {
+export default function ImageSlider({ images }: ImageSliderProps): JSX.Element {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const prevSlide = (): void => {
     setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + event.images.length) % event.images.length
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length
     );
   };
 
   const nextSlide = (): void => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % event.images.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.imageWrapper}>
         <Image
-          src={event.images[currentIndex]}
+          src={images[currentIndex].url}
           alt={`Slider Image ${currentIndex + 1}`}
           width={500}
           height={100}
@@ -53,7 +44,7 @@ export default function ImageSlider({ event }: ImageSliderProps): JSX.Element {
         <IoChevronForward className={styles.icon} />
       </button>
       <div className={styles.dotsContainer}>
-        {event.images.map((_, index) => (
+        {images.map((_, index) => (
           <div
             key={index}
             className={`${styles.dot} ${

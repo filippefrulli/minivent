@@ -3,16 +3,18 @@
 import React, { useEffect, useState } from "react";
 import styles from "./home.module.css";
 import EventListItem from "../components/event-list-item/EventListItem";
-import testEvents from "../lib/testevents";
 import testCities from "../lib/testcities";
-import MapComponent from "../components/map/Map";
 import { useRouter } from "next/navigation";
+import { get_events } from "../api/endpoints";
+import { Event } from "../lib/event";
+import MapComponent from "../components/map/Map";
 
 const Home = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [text, setText] = useState("Chiavari");
   const [oldText, setOldText] = useState("Chiavari");
   const [cities, setCities] = useState([]);
+  const [events, setEvents] = useState<Event[]>([]);
   const [filteredCities, setFilteredCities] = useState([]);
   const [hoveredEvent, setHoveredEvent] = useState(null);
   const router = useRouter()
@@ -56,6 +58,11 @@ const Home = () => {
     router.push(`/event/${event.id}`);
   };
 
+  const fetchEvents = async () => {
+    const events = await get_events();
+    setEvents(events);
+  }
+
   const fetchCities = async () => {
     setCities(testCities);
     setFilteredCities(testCities);
@@ -85,6 +92,7 @@ const Home = () => {
 
   useEffect(() => {
     fetchCities();
+    fetchEvents();
   }, []);
 
   return (
@@ -122,15 +130,16 @@ const Home = () => {
       </div>
       <div className={styles.contentContainer}>
         <div className={styles.eventListContainer}>
-          {testEvents.map((event, index) => (
+          {events.map((event, index) => (
             <a
+              key={event.id}
               onMouseEnter={() => setHoveredEvent(event)}
               onMouseLeave={() => setHoveredEvent(null)}
               onClick={() => handleEventClick(event)}>
               <EventListItem
                 key={index}
                 imageSrc={event.banner}
-                title={event.title}
+                title={event.name}
                 location={event.location}
                 date={event.date}
                 price={event.price}
@@ -140,10 +149,10 @@ const Home = () => {
         </div>
         <div className={styles.mapContainer}>
           <MapComponent
-            markerLocations={testEvents.map((event) => ({
-              lat: event.lat,
-              long: event.long,
-              popupText: event.title,
+            markerLocations={events.map((event) => ({
+              lat: event.latitude,
+              long: event.longitude,
+              popupText: event.name,
             }))}
             hoveredEvent={hoveredEvent}
           />
